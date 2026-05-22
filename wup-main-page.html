@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>WUP – Wiradi Utama Packindo | Supplier Packaging & Cutleries Terpercaya</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --white:   #FFFFFF;
+    --blue1:   #0065C2;
+    --blue2:   #0049A0;
+    --dark:    #202020;
+    --gray:    #DADADA;
+    --gray2:   #F4F6FA;
+    --gray3:   #8A8F99;
+    --font-head: 'Plus Jakarta Sans', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+    --radius: 12px;
+    --shadow: 0 4px 24px rgba(0,69,160,.10);
+    --transition: .28s cubic-bezier(.4,0,.2,1);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font-body); color: var(--dark); background: var(--white); overflow-x: hidden; }
+
+  /* ─── SCROLLBAR ─────────────────────── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--gray2); }
+  ::-webkit-scrollbar-thumb { background: var(--blue1); border-radius: 3px; }
+
+  /* ─── HEADER ────────────────────────── */
+  header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    background: rgba(255,255,255,.92);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(0,101,194,.10);
+    transition: box-shadow var(--transition);
+  }
+  header.scrolled { box-shadow: 0 2px 20px rgba(0,69,160,.12); }
+  .header-inner {
+    max-width: 1240px; margin: 0 auto;
+    padding: 0 32px;
+    height: 68px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .logo {
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none;
+  }
+  .logo-mark {
+    width: 38px; height: 38px; border-radius: 8px;
+    background: linear-gradient(135deg, var(--blue1), var(--blue2));
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-head); font-weight: 800; color: #fff; font-size: 14px;
+    letter-spacing: -.5px;
+  }
+  .logo-text { font-family: var(--font-head); font-weight: 700; font-size: 15px; color: var(--dark); line-height: 1.2; }
+  .logo-text span { display: block; font-size: 11px; font-weight: 500; color: var(--blue1); letter-spacing: .3px; }
+  nav { display: flex; align-items: center; gap: 6px; }
+  nav a {
+    font-family: var(--font-head); font-size: 13.5px; font-weight: 600;
+    color: var(--dark); text-decoration: none;
+    padding: 7px 14px; border-radius: 8px;
+    transition: background var(--transition), color var(--transition);
+    letter-spacing: .1px;
+  }
+  nav a:hover { background: var(--gray2); color: var(--blue1); }
+  nav a.active { color: var(--blue1); }
+  .nav-cta {
+    background: linear-gradient(135deg, var(--blue1), var(--blue2)) !important;
+    color: #fff !important; padding: 8px 20px !important;
+    box-shadow: 0 2px 12px rgba(0,101,194,.30);
+  }
+  .nav-cta:hover { opacity: .9; background: linear-gradient(135deg, var(--blue1), var(--blue2)) !important; }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+  .hamburger span { width: 22px; height: 2px; background: var(--dark); border-radius: 2px; transition: var(--transition); }
+  .mobile-nav {
+    display: none; position: fixed; top: 68px; left: 0; right: 0;
+    background: #fff; border-bottom: 1px solid var(--gray);
+    padding: 16px 24px 24px; flex-direction: column; gap: 4px; z-index: 999;
+    box-shadow: 0 8px 32px rgba(0,0,0,.08);
+  }
+  .mobile-nav.open { display: flex; }
+  .mobile-nav a { font-family: var(--font-head); font-weight: 600; font-size: 15px; color: var(--dark); text-decoration: none; padding: 10px 0; border-bottom: 1px solid var(--gray2); }
+
+  /* ─── HERO ───────────────────────────── */
+  #hero {
+    min-height: 100vh; padding-top: 68px;
+    background: linear-gradient(135deg, var(--blue2) 0%, var(--blue1) 60%, #0082e6 100%);
+    position: relative; overflow: hidden;
+    display: flex; align-items: center;
+  }
+  .hero-bg-pattern {
+    position: absolute; inset: 0; pointer-events: none;
+    background-image:
+      radial-gradient(circle at 75% 30%, rgba(255,255,255,.07) 0%, transparent 55%),
+      radial-gradient(circle at 20% 80%, rgba(0,0,0,.12) 0%, transparent 50%);
+  }
+  .hero-grid-lines {
+    position: absolute; inset: 0; pointer-events: none;
+    background-image: linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
+  }
+  .hero-floating {
+    position: absolute; border-radius: 50%;
+    background: rgba(255,255,255,.06); animation: floatBall 8s ease-in-out infinite;
+  }
+  .hero-floating.f1 { width: 320px; height: 320px; top: -80px; right: -60px; animation-delay: 0s; }
+  .hero-floating.f2 { width: 180px; height: 180px; bottom: 80px; right: 15%; animation-delay: -3s; }
+  .hero-floating.f3 { width: 90px; height: 90px; top: 40%; left: 5%; animation-delay: -5s; }
+  @keyframes floatBall { 0%,100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-22px) scale(1.04); } }
+
+  .hero-inner {
+    max-width: 1240px; margin: 0 auto; padding: 80px 32px;
+    position: relative; z-index: 2;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,.15); backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,.25);
+    border-radius: 100px; padding: 6px 16px 6px 8px;
+    margin-bottom: 24px;
+  }
+  .hero-badge-dot { width: 8px; height: 8px; border-radius: 50%; background: #4ade80; box-shadow: 0 0 8px #4ade80; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .5; } }
+  .hero-badge span { font-family: var(--font-head); font-size: 12px; font-weight: 600; color: rgba(255,255,255,.9); letter-spacing: .4px; text-transform: uppercase; }
+
+  .hero-content h1 {
+    font-family: var(--font-head); font-size: clamp(28px, 3.5vw, 46px);
+    font-weight: 800; color: #fff; line-height: 1.18;
+    letter-spacing: -.8px; margin-bottom: 20px;
+  }
+  .hero-content h1 em { font-style: normal; color: #93c5fd; }
+  .hero-content p {
+    font-size: 16px; line-height: 1.7; color: rgba(255,255,255,.82);
+    max-width: 480px; margin-bottom: 36px;
+  }
+  .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn-primary {
+    font-family: var(--font-head); font-weight: 700; font-size: 14px;
+    background: #fff; color: var(--blue2); border: none; cursor: pointer;
+    padding: 14px 28px; border-radius: 10px;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+    transition: transform var(--transition), box-shadow var(--transition);
+    box-shadow: 0 4px 20px rgba(0,0,0,.18);
+    letter-spacing: .2px;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,.25); }
+  .btn-secondary {
+    font-family: var(--font-head); font-weight: 600; font-size: 14px;
+    background: rgba(255,255,255,.12); color: #fff;
+    border: 1.5px solid rgba(255,255,255,.35); cursor: pointer;
+    padding: 13px 26px; border-radius: 10px;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+    transition: background var(--transition), border-color var(--transition), transform var(--transition);
+    backdrop-filter: blur(8px); letter-spacing: .2px;
+  }
+  .btn-secondary:hover { background: rgba(255,255,255,.22); border-color: rgba(255,255,255,.6); transform: translateY(-2px); }
+
+  .hero-visual {
+    display: flex; flex-direction: column; gap: 16px;
+    animation: fadeUp .8s .3s ease both;
+  }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+  .hero-cards-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .hero-card {
+    background: rgba(255,255,255,.12); backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,.20); border-radius: 14px;
+    padding: 20px; color: #fff;
+    transition: transform var(--transition), background var(--transition);
+  }
+  .hero-card:hover { transform: translateY(-4px); background: rgba(255,255,255,.18); }
+  .hero-card .hc-icon { font-size: 28px; margin-bottom: 10px; }
+  .hero-card .hc-title { font-family: var(--font-head); font-weight: 700; font-size: 13px; letter-spacing: .2px; margin-bottom: 4px; }
+  .hero-card .hc-desc { font-size: 12px; opacity: .75; line-height: 1.5; }
+  .hero-card.wide { grid-column: 1 / -1; display: flex; align-items: center; gap: 16px; }
+  .hero-card.wide .hc-icon { font-size: 32px; flex-shrink: 0; }
+
+  /* ─── STATS SECTION ──────────────────── */
+  #stats {
+    background: var(--dark); padding: 56px 0; overflow: hidden;
+    position: relative;
+  }
+  #stats::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, #1a1a2e 0%, var(--dark) 50%, #0d1b33 100%);
+  }
+  .stats-inner {
+    max-width: 1240px; margin: 0 auto; padding: 0 32px;
+    position: relative; z-index: 1;
+  }
+  .stats-top { text-align: center; margin-bottom: 40px; }
+  .stats-top h2 { font-family: var(--font-head); font-size: clamp(20px, 2.5vw, 30px); font-weight: 800; color: #fff; margin-bottom: 8px; }
+  .stats-top p { font-size: 15px; color: rgba(255,255,255,.6); }
+
+  .stats-numbers { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-bottom: 48px; }
+  .stat-item { text-align: center; padding: 28px 16px; border-right: 1px solid rgba(255,255,255,.08); }
+  .stat-item:last-child { border-right: none; }
+  .stat-num { font-family: var(--font-head); font-size: clamp(28px, 3vw, 42px); font-weight: 800; color: var(--blue1); line-height: 1; margin-bottom: 6px; }
+  .stat-label { font-size: 13px; color: rgba(255,255,255,.55); letter-spacing: .3px; }
+
+  /* Client Carousel */
+  .clients-label { font-family: var(--font-head); font-size: 12px; font-weight: 600; color: rgba(255,255,255,.4); text-transform: uppercase; letter-spacing: 1.5px; text-align: center; margin-bottom: 20px; }
+  .clients-track-wrapper { overflow: hidden; position: relative; }
+  .clients-track-wrapper::before,
+  .clients-track-wrapper::after {
+    content: ''; position: absolute; top: 0; bottom: 0; width: 80px; z-index: 2;
+    pointer-events: none;
+  }
+  .clients-track-wrapper::before { left: 0; background: linear-gradient(to right, var(--dark), transparent); }
+  .clients-track-wrapper::after { right: 0; background: linear-gradient(to left, var(--dark), transparent); }
+  .clients-track {
+    display: flex; gap: 0; width: max-content;
+    animation: scrollClients 28s linear infinite;
+  }
+  .clients-track:hover { animation-play-state: paused; }
+  @keyframes scrollClients { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .client-chip {
+    display: flex; align-items: center; justify-content: center;
+    height: 48px; padding: 0 28px;
+    background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08);
+    border-radius: 8px; margin-right: 14px; white-space: nowrap;
+    font-family: var(--font-head); font-size: 13px; font-weight: 600;
+    color: rgba(255,255,255,.55); letter-spacing: .4px;
+    transition: color var(--transition), background var(--transition);
+    cursor: default;
+  }
+  .client-chip:hover { color: #fff; background: rgba(0,101,194,.3); border-color: rgba(0,101,194,.5); }
+
+  /* ─── SECTION BASE ───────────────────── */
+  .section { padding: 88px 0; }
+  .section-inner { max-width: 1240px; margin: 0 auto; padding: 0 32px; }
+  .section-header { text-align: center; margin-bottom: 56px; }
+  .section-eyebrow {
+    display: inline-block; font-family: var(--font-head); font-size: 11px; font-weight: 700;
+    color: var(--blue1); text-transform: uppercase; letter-spacing: 2px;
+    background: rgba(0,101,194,.08); padding: 5px 14px; border-radius: 100px;
+    margin-bottom: 14px;
+  }
+  .section-header h2 { font-family: var(--font-head); font-size: clamp(24px, 2.8vw, 36px); font-weight: 800; color: var(--dark); line-height: 1.22; margin-bottom: 14px; letter-spacing: -.5px; }
+  .section-header p { font-size: 15px; color: var(--gray3); max-width: 520px; margin: 0 auto; line-height: 1.7; }
+
+  /* ─── FEATURES / KEUNGGULAN ─────────── */
+  #keunggulan { background: var(--gray2); }
+  .features-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px; }
+  .feature-card {
+    background: #fff; border-radius: 16px; padding: 28px 20px;
+    border: 1px solid rgba(0,0,0,.06);
+    transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+    text-align: center;
+  }
+  .feature-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(0,101,194,.12); border-color: rgba(0,101,194,.2); }
+  .feature-icon {
+    width: 56px; height: 56px; border-radius: 14px; margin: 0 auto 16px;
+    background: linear-gradient(135deg, rgba(0,101,194,.08), rgba(0,73,160,.12));
+    display: flex; align-items: center; justify-content: center; font-size: 26px;
+  }
+  .feature-card h3 { font-family: var(--font-head); font-size: 14px; font-weight: 700; color: var(--dark); margin-bottom: 8px; }
+  .feature-card p { font-size: 12.5px; color: var(--gray3); line-height: 1.6; }
+
+  /* ─── CATALOG ────────────────────────── */
+  #catalog { background: #fff; }
+  .catalog-filters { display: flex; gap: 8px; justify-content: center; margin-bottom: 36px; flex-wrap: wrap; }
+  .filter-pill {
+    font-family: var(--font-head); font-size: 13px; font-weight: 600;
+    padding: 9px 22px; border-radius: 100px;
+    border: 1.5px solid var(--gray); color: var(--gray3); background: #fff;
+    cursor: pointer; transition: all var(--transition);
+    white-space: nowrap;
+  }
+  .filter-pill:hover { border-color: var(--blue1); color: var(--blue1); }
+  .filter-pill.active { background: var(--blue1); border-color: var(--blue1); color: #fff; }
+
+  .products-carousel-wrapper { position: relative; }
+  .products-carousel { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; overflow: hidden; }
+  .product-card {
+    background: #fff; border-radius: 16px; overflow: hidden;
+    border: 1.5px solid rgba(0,0,0,.07);
+    transition: transform var(--transition), box-shadow var(--transition);
+    display: flex; flex-direction: column;
+  }
+  .product-card:hover { transform: translateY(-5px); box-shadow: 0 16px 48px rgba(0,0,0,.10); }
+  .product-img {
+    width: 100%; aspect-ratio: 4/3; background: var(--gray2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 52px; position: relative; overflow: hidden;
+  }
+  .product-badge {
+    position: absolute; top: 10px; left: 10px;
+    background: var(--blue1); color: #fff;
+    font-family: var(--font-head); font-size: 10px; font-weight: 700;
+    padding: 3px 10px; border-radius: 100px; letter-spacing: .4px;
+  }
+  .product-body { padding: 16px; flex: 1; display: flex; flex-direction: column; gap: 8px; }
+  .product-name { font-family: var(--font-head); font-weight: 700; font-size: 14px; color: var(--dark); }
+  .product-sub { font-size: 12px; color: var(--gray3); }
+  .product-cta-wrap { position: relative; margin-top: auto; }
+  .btn-pesan {
+    width: 100%; font-family: var(--font-head); font-size: 13px; font-weight: 700;
+    background: linear-gradient(135deg, var(--blue1), var(--blue2)); color: #fff;
+    border: none; cursor: pointer; padding: 11px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+    transition: opacity var(--transition);
+  }
+  .btn-pesan:hover { opacity: .88; }
+  .dropdown-pesan {
+    position: absolute; bottom: calc(100% + 8px); left: 0; right: 0;
+    background: #fff; border: 1.5px solid rgba(0,101,194,.2);
+    border-radius: 10px; overflow: hidden; display: none;
+    box-shadow: 0 8px 28px rgba(0,0,0,.12); z-index: 10;
+  }
+  .dropdown-pesan.open { display: block; }
+  .dropdown-pesan a {
+    display: flex; align-items: center; gap: 10px;
+    padding: 12px 16px; text-decoration: none;
+    font-family: var(--font-head); font-size: 13px; font-weight: 600; color: var(--dark);
+    transition: background var(--transition);
+    border-bottom: 1px solid var(--gray2);
+  }
+  .dropdown-pesan a:last-child { border-bottom: none; }
+  .dropdown-pesan a:hover { background: var(--gray2); }
+  .dropdown-pesan a .ico { font-size: 16px; }
+
+  /* Carousel nav */
+  .carousel-nav { display: flex; align-items: center; justify-content: space-between; margin-top: 28px; }
+  .carousel-arrows { display: flex; gap: 10px; }
+  .arrow-btn {
+    width: 40px; height: 40px; border-radius: 50%; border: 1.5px solid var(--gray);
+    background: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center;
+    font-size: 16px; color: var(--dark); transition: all var(--transition);
+  }
+  .arrow-btn:hover { background: var(--blue1); border-color: var(--blue1); color: #fff; }
+  .catalog-see-all {
+    font-family: var(--font-head); font-size: 14px; font-weight: 700;
+    color: var(--blue1); text-decoration: none;
+    display: inline-flex; align-items: center; gap: 6px;
+    border-bottom: 2px solid transparent;
+    transition: border-color var(--transition), gap var(--transition);
+  }
+  .catalog-see-all:hover { border-color: var(--blue1); gap: 10px; }
+
+  /* ─── BLOG ───────────────────────────── */
+  #blog { background: var(--gray2); }
+  .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .blog-card {
+    background: #fff; border-radius: 16px; overflow: hidden;
+    border: 1px solid rgba(0,0,0,.06);
+    transition: transform var(--transition), box-shadow var(--transition);
+    display: flex; flex-direction: column;
+  }
+  .blog-card:hover { transform: translateY(-5px); box-shadow: 0 12px 40px rgba(0,0,0,.09); }
+  .blog-img {
+    width: 100%; height: 180px; background: linear-gradient(135deg, var(--blue2), var(--blue1));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 40px; position: relative;
+  }
+  .blog-img.c2 { background: linear-gradient(135deg, #1d4ed8, var(--blue1)); }
+  .blog-img.c3 { background: linear-gradient(135deg, var(--blue1), #06b6d4); }
+  .blog-cat {
+    position: absolute; bottom: 12px; left: 12px;
+    background: rgba(255,255,255,.2); backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,.3); border-radius: 100px;
+    font-family: var(--font-head); font-size: 10px; font-weight: 700; color: #fff;
+    padding: 4px 12px; letter-spacing: .5px; text-transform: uppercase;
+  }
+  .blog-body { padding: 20px; flex: 1; display: flex; flex-direction: column; }
+  .blog-meta { font-size: 11.5px; color: var(--gray3); margin-bottom: 10px; letter-spacing: .2px; }
+  .blog-body h3 { font-family: var(--font-head); font-size: 15px; font-weight: 700; color: var(--dark); margin-bottom: 10px; line-height: 1.45; }
+  .blog-body p { font-size: 13px; color: var(--gray3); line-height: 1.65; flex: 1; }
+  .blog-read {
+    display: inline-flex; align-items: center; gap: 6px; margin-top: 16px;
+    font-family: var(--font-head); font-size: 12.5px; font-weight: 700; color: var(--blue1);
+    text-decoration: none; transition: gap var(--transition);
+  }
+  .blog-read:hover { gap: 10px; }
+
+  /* ─── SOSIAL MEDIA ───────────────────── */
+  #sosmed { background: #fff; padding: 80px 0; }
+  .sosmed-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 48px; }
+  .sosmed-card {
+    border-radius: 20px; padding: 36px 32px;
+    display: flex; flex-direction: column; align-items: center; text-align: center;
+    transition: transform var(--transition), box-shadow var(--transition);
+    gap: 16px;
+  }
+  .sosmed-card:hover { transform: translateY(-5px); }
+  .sosmed-card.ig { background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+  .sosmed-card.tt { background: #000; border: 1.5px solid rgba(255,255,255,.1); }
+  .sosmed-icon { font-size: 48px; }
+  .sosmed-name { font-family: var(--font-head); font-size: 22px; font-weight: 800; color: #fff; }
+  .sosmed-handle { font-size: 14px; color: rgba(255,255,255,.7); }
+  .sosmed-desc { font-size: 14px; color: rgba(255,255,255,.8); max-width: 320px; line-height: 1.6; }
+  .btn-sosmed {
+    font-family: var(--font-head); font-size: 13px; font-weight: 700;
+    background: rgba(255,255,255,.2); color: #fff;
+    border: 1.5px solid rgba(255,255,255,.4); border-radius: 8px;
+    padding: 10px 24px; text-decoration: none;
+    transition: background var(--transition);
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-sosmed:hover { background: rgba(255,255,255,.32); }
+
+  /* ─── FOOTER ─────────────────────────── */
+  footer { background: var(--dark); color: rgba(255,255,255,.7); padding: 64px 0 0; }
+  .footer-inner {
+    max-width: 1240px; margin: 0 auto; padding: 0 32px;
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1.4fr; gap: 48px;
+  }
+  .footer-brand .logo-text { color: #fff; font-size: 17px; }
+  .footer-brand .logo-text span { color: #93c5fd; }
+  .footer-brand p { font-size: 13.5px; line-height: 1.7; color: rgba(255,255,255,.55); margin: 16px 0 24px; max-width: 280px; }
+  .footer-contact-item { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-size: 13px; }
+  .footer-contact-item .icon { font-size: 16px; }
+  .footer-col h4 { font-family: var(--font-head); font-size: 13px; font-weight: 700; color: #fff; letter-spacing: .5px; text-transform: uppercase; margin-bottom: 20px; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col ul a { color: rgba(255,255,255,.55); text-decoration: none; font-size: 13.5px; transition: color var(--transition); }
+  .footer-col ul a:hover { color: #fff; }
+  .footer-newsletter p { font-size: 13px; color: rgba(255,255,255,.55); margin-bottom: 16px; line-height: 1.6; }
+  .newsletter-form { display: flex; gap: 8px; }
+  .newsletter-form input {
+    flex: 1; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12);
+    border-radius: 8px; padding: 11px 14px; color: #fff; font-size: 13px; font-family: var(--font-body);
+    outline: none; transition: border-color var(--transition);
+  }
+  .newsletter-form input::placeholder { color: rgba(255,255,255,.3); }
+  .newsletter-form input:focus { border-color: var(--blue1); }
+  .newsletter-form button {
+    background: var(--blue1); color: #fff; border: none; border-radius: 8px;
+    padding: 11px 18px; font-family: var(--font-head); font-size: 13px; font-weight: 700;
+    cursor: pointer; transition: background var(--transition);
+    white-space: nowrap;
+  }
+  .newsletter-form button:hover { background: var(--blue2); }
+  .footer-social { display: flex; gap: 10px; margin-top: 20px; }
+  .footer-social a {
+    width: 36px; height: 36px; border-radius: 8px;
+    background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.1);
+    display: flex; align-items: center; justify-content: center; font-size: 16px;
+    text-decoration: none; transition: background var(--transition), border-color var(--transition);
+  }
+  .footer-social a:hover { background: var(--blue1); border-color: var(--blue1); }
+  .footer-bottom {
+    max-width: 1240px; margin: 48px auto 0; padding: 20px 32px;
+    border-top: 1px solid rgba(255,255,255,.08);
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 12.5px; color: rgba(255,255,255,.35);
+  }
+  .footer-bottom a { color: rgba(255,255,255,.45); text-decoration: none; }
+  .footer-bottom a:hover { color: rgba(255,255,255,.8); }
+
+  /* ─── ANIMATIONS ─────────────────────── */
+  .reveal { opacity: 0; transform: translateY(22px); transition: opacity .55s ease, transform .55s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ─── RESPONSIVE ─────────────────────── */
+  @media (max-width: 1024px) {
+    .features-grid { grid-template-columns: repeat(3, 1fr); }
+    .footer-inner { grid-template-columns: 1fr 1fr; gap: 32px; }
+    .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+  }
+  @media (max-width: 820px) {
+    .hero-inner { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+    .hero-content p { margin-left: auto; margin-right: auto; }
+    .hero-btns { justify-content: center; }
+    .stats-numbers { grid-template-columns: repeat(2, 1fr); }
+    .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,.08); }
+    .products-carousel { grid-template-columns: repeat(2, 1fr); }
+    .blog-grid { grid-template-columns: 1fr; }
+    .sosmed-grid { grid-template-columns: 1fr; }
+    nav { display: none; }
+    .hamburger { display: flex; }
+    .features-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 560px) {
+    .hero-cards-grid { grid-template-columns: 1fr; }
+    .hero-card.wide { grid-column: auto; }
+    .products-carousel { grid-template-columns: 1fr 1fr; }
+    .features-grid { grid-template-columns: 1fr 1fr; }
+    .footer-inner { grid-template-columns: 1fr; }
+    .section-inner { padding: 0 20px; }
+    .header-inner { padding: 0 20px; }
+    .stats-numbers { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════ HEADER ═══════════ -->
+<header id="header">
+  <div class="header-inner">
+    <a href="#" class="logo">
+      <div class="logo-mark">WUP</div>
+      <div class="logo-text">
+        Wiradi Utama Packindo
+        <span>Packaging & Cutleries</span>
+      </div>
+    </a>
+    <nav>
+      <a href="#" class="active">Home</a>
+      <a href="#about">About</a>
+      <a href="#catalog">Catalog</a>
+      <a href="#blog">Blog</a>
+      <a href="#contact" class="nav-cta">Contact Us</a>
+    </nav>
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</header>
+<div class="mobile-nav" id="mobileNav">
+  <a href="#">Home</a>
+  <a href="#about">About</a>
+  <a href="#catalog">Catalog</a>
+  <a href="#blog">Blog</a>
+  <a href="#contact">Contact Us</a>
+</div>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section id="hero">
+  <div class="hero-bg-pattern"></div>
+  <div class="hero-grid-lines"></div>
+  <div class="hero-floating f1"></div>
+  <div class="hero-floating f2"></div>
+  <div class="hero-floating f3"></div>
+
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        <span>Pengiriman ke Seluruh Indonesia</span>
+      </div>
+      <h1>Supplier Packaging &amp; Alat Makan Sekali Pakai <em>Terpercaya</em> di Indonesia</h1>
+      <p>Kami menyediakan solusi food packaging dan cutleries premium untuk restoran, kafe, hotel, dan bisnis F&amp;B Anda — dengan harga kompetitif dan pengiriman ke seluruh Indonesia.</p>
+      <div class="hero-btns">
+        <a href="#catalog" class="btn-primary">📦 Lihat Katalog Produk</a>
+        <a href="#contact" class="btn-secondary">💬 Hubungi Kami</a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-cards-grid">
+        <div class="hero-card">
+          <div class="hc-icon">🥡</div>
+          <div class="hc-title">Thinwall & Mika</div>
+          <div class="hc-desc">Wadah makanan premium food grade</div>
+        </div>
+        <div class="hero-card">
+          <div class="hc-icon">🥢</div>
+          <div class="hc-title">Cutleries</div>
+          <div class="hc-desc">Sendok, garpu, sumpit & aksesoris meja</div>
+        </div>
+        <div class="hero-card">
+          <div class="hc-icon">📄</div>
+          <div class="hc-title">Paper Pack</div>
+          <div class="hc-desc">Dus, box, dan paper bag ramah lingkungan</div>
+        </div>
+        <div class="hero-card">
+          <div class="hc-icon">🧴</div>
+          <div class="hc-title">Plastic & Wooden</div>
+          <div class="hc-desc">Gelas, sedotan, dan aksesoris kayu</div>
+        </div>
+        <div class="hero-card wide">
+          <div class="hc-icon">🚚</div>
+          <div>
+            <div class="hc-title">Siap Kirim ke Seluruh Indonesia</div>
+            <div class="hc-desc">MOQ bersahabat · Lead time 3–7 hari · Proof 24 jam</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ STATS + CLIENTS ═══════════ -->
+<section id="stats">
+  <div class="stats-inner">
+    <div class="stats-top reveal">
+      <h2>Supplier Packaging Tepercaya 15 Ribu+ Customer &amp; 10 Juta+ Produk Terkirim</h2>
+      <p>Berbagai pelaku usaha hingga brand besar telah mempercayai kami</p>
+    </div>
+    <div class="stats-numbers reveal">
+      <div class="stat-item">
+        <div class="stat-num" data-target="15000">0</div>
+        <div class="stat-label">Customer Aktif</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" data-target="10000000">0</div>
+        <div class="stat-label">Produk Terkirim</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" data-target="500">0</div>
+        <div class="stat-label">Varian Produk</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" data-target="15">0</div>
+        <div class="stat-label">Tahun Pengalaman</div>
+      </div>
+    </div>
+    <div class="clients-label reveal">Dipercaya oleh</div>
+    <div class="clients-track-wrapper reveal">
+      <div class="clients-track" id="clientsTrack">
+        <!-- will be duplicated by JS -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ KEUNGGULAN ═══════════ -->
+<section id="keunggulan" class="section">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">Kenapa Pilih WUP?</span>
+      <h2>Keunggulan Kami</h2>
+      <p>Kami hadir dengan standar kualitas tinggi dan layanan yang berpusat pada kebutuhan bisnis Anda</p>
+    </div>
+    <div class="features-grid reveal">
+      <div class="feature-card">
+        <div class="feature-icon">🏭</div>
+        <h3>Produksi Sendiri</h3>
+        <p>Kontrol penuh atas kualitas dan waktu produksi — hasil terjamin konsisten.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📦</div>
+        <h3>MOQ Bersahabat</h3>
+        <p>Cocok untuk UMKM dan kebutuhan testing produk baru tanpa minimum order besar.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">✅</div>
+        <h3>Food Grade &amp; Rapi</h3>
+        <p>Bahan aman dipakai, potongan presisi, dan sesuai standar keamanan pangan.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3>Lead Time Cepat</h3>
+        <p>Proof desain 24 jam, produksi selesai dalam 3–7 hari kerja.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💰</div>
+        <h3>Harga Transparan</h3>
+        <p>Estimasi harga instan, tanpa biaya tersembunyi — bisnis Anda lebih terencana.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CATALOG ═══════════ -->
+<section id="catalog" class="section">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">Produk Kami</span>
+      <h2>Katalog Produk</h2>
+      <p>Pilihan kemasan &amp; cutleries berkualitas untuk berbagai kebutuhan bisnis. Tersedia ratusan varian produk.</p>
+    </div>
+
+    <div class="catalog-filters reveal" id="catalogFilters">
+      <button class="filter-pill active" onclick="filterCatalog(this,'semua')">Semua</button>
+      <button class="filter-pill" onclick="filterCatalog(this,'thinwall')">Thinwall</button>
+      <button class="filter-pill" onclick="filterCatalog(this,'mika')">Mika</button>
+      <button class="filter-pill" onclick="filterCatalog(this,'paper')">Paper</button>
+      <button class="filter-pill" onclick="filterCatalog(this,'plastic')">Plastic</button>
+      <button class="filter-pill" onclick="filterCatalog(this,'wooden')">Wooden</button>
+    </div>
+
+    <div class="products-carousel-wrapper">
+      <div class="products-carousel reveal" id="productsCarousel"></div>
+      <div class="carousel-nav reveal">
+        <div class="carousel-arrows">
+          <button class="arrow-btn" onclick="prevProduct()">&#8592;</button>
+          <button class="arrow-btn" onclick="nextProduct()">&#8594;</button>
+        </div>
+        <a href="#" class="catalog-see-all">LIHAT SELENGKAPNYA →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ BLOG ═══════════ -->
+<section id="blog" class="section">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">Tips & Inspirasi</span>
+      <h2>Artikel Terbaru</h2>
+      <p>Informasi dan tips seputar packaging, bisnis F&amp;B, dan industri kuliner Indonesia</p>
+    </div>
+    <div class="blog-grid reveal">
+      <div class="blog-card">
+        <div class="blog-img">
+          🍱
+          <span class="blog-cat">Packaging Tips</span>
+        </div>
+        <div class="blog-body">
+          <div class="blog-meta">12 Mei 2025 &nbsp;·&nbsp; 5 menit baca</div>
+          <h3>5 Alasan Kemasan Food Grade Penting untuk Restoran Anda</h3>
+          <p>Kemasan bukan sekadar pembungkus — ia adalah representasi merek Anda di hadapan pelanggan. Pelajari mengapa standar food grade tidak boleh dikompromikan.</p>
+          <a href="#" class="blog-read">Baca Selengkapnya →</a>
+        </div>
+      </div>
+      <div class="blog-card">
+        <div class="blog-img c2">
+          ☕
+          <span class="blog-cat">Bisnis F&B</span>
+        </div>
+        <div class="blog-body">
+          <div class="blog-meta">5 Mei 2025 &nbsp;·&nbsp; 4 menit baca</div>
+          <h3>Panduan Memilih Kemasan untuk Cloud Kitchen yang Berkembang</h3>
+          <p>Cloud kitchen memiliki kebutuhan packaging yang unik. Dari ketahanan panas hingga desain yang instagramable — ini panduan lengkapnya.</p>
+          <a href="#" class="blog-read">Baca Selengkapnya →</a>
+        </div>
+      </div>
+      <div class="blog-card">
+        <div class="blog-img c3">
+          🌿
+          <span class="blog-cat">Sustainability</span>
+        </div>
+        <div class="blog-body">
+          <div class="blog-meta">28 Apr 2025 &nbsp;·&nbsp; 6 menit baca</div>
+          <h3>Tren Packaging Ramah Lingkungan di Industri F&B Indonesia 2025</h3>
+          <p>Konsumen semakin sadar lingkungan. Inilah tren kemasan eco-friendly yang mulai diadopsi oleh restoran dan kafe terkemuka di Indonesia.</p>
+          <a href="#" class="blog-read">Baca Selengkapnya →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ SOSMED ═══════════ -->
+<section id="sosmed">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">Ikuti Kami</span>
+      <h2>Media Sosial Kami</h2>
+      <p>Lihat konten dan aktivitas kami di TikTok dan Instagram!</p>
+    </div>
+    <div class="sosmed-grid reveal">
+      <div class="sosmed-card ig">
+        <div class="sosmed-icon">📸</div>
+        <div class="sosmed-name">Instagram</div>
+        <div class="sosmed-handle">@wiradipacking</div>
+        <div class="sosmed-desc">Temukan inspirasi kemasan, showcase produk, dan tips bisnis F&amp;B setiap harinya di Instagram kami.</div>
+        <a href="https://instagram.com" target="_blank" class="btn-sosmed">🔗 Follow di Instagram</a>
+      </div>
+      <div class="sosmed-card tt">
+        <div class="sosmed-icon">🎵</div>
+        <div class="sosmed-name">TikTok</div>
+        <div class="sosmed-handle">@wiradipacking</div>
+        <div class="sosmed-desc">Tonton video proses produksi, unboxing produk, dan konten edukatif seputar packaging di TikTok kami.</div>
+        <a href="https://tiktok.com" target="_blank" class="btn-sosmed">🔗 Follow di TikTok</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer id="contact">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="logo" style="margin-bottom:0">
+        <div class="logo-mark">WUP</div>
+        <div class="logo-text">
+          Wiradi Utama Packindo
+          <span>Packaging & Cutleries</span>
+        </div>
+      </div>
+      <p>Mitra terbaik untuk packaging &amp; cutleries F&amp;B di seluruh Indonesia. Kualitas premium, harga kompetitif, pengiriman tepat waktu.</p>
+      <div class="footer-contact-item"><span class="icon">📍</span> Jakarta, Indonesia</div>
+      <div class="footer-contact-item"><span class="icon">📞</span> +62 812-3456-7890</div>
+      <div class="footer-contact-item"><span class="icon">✉️</span> info@wiradipacking.com</div>
+      <div class="footer-social">
+        <a href="#" title="Instagram">📸</a>
+        <a href="#" title="TikTok">🎵</a>
+        <a href="#" title="WhatsApp">💬</a>
+        <a href="#" title="Shopee">🛒</a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h4>Navigasi</h4>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#catalog">Katalog Produk</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#contact">Kontak</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Produk</h4>
+      <ul>
+        <li><a href="#">Thinwall</a></li>
+        <li><a href="#">Mika</a></li>
+        <li><a href="#">Paper Packaging</a></li>
+        <li><a href="#">Plastic</a></li>
+        <li><a href="#">Wooden Cutleries</a></li>
+        <li><a href="#">Custom Order</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-newsletter">
+      <h4>Newsletter</h4>
+      <p>Dapatkan info produk terbaru, promo eksklusif, dan tips bisnis F&amp;B langsung di email Anda.</p>
+      <div class="newsletter-form">
+        <input type="email" placeholder="Email Anda..." />
+        <button>Kirim</button>
+      </div>
+      <div style="margin-top:20px">
+        <h4 style="margin-bottom:12px">Jam Operasional</h4>
+        <div style="font-size:13px;color:rgba(255,255,255,.5);line-height:1.9">
+          Senin – Jumat: 08.00 – 17.00<br>
+          Sabtu: 08.00 – 13.00<br>
+          <span style="color:rgba(255,255,255,.3)">Minggu & Hari Libur: Tutup</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Wiradi Utama Packindo. Hak cipta dilindungi.</span>
+    <div style="display:flex;gap:20px">
+      <a href="#">Kebijakan Privasi</a>
+      <a href="#">Syarat & Ketentuan</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════ JAVASCRIPT ═══════════ -->
+<script>
+  /* ── Header scroll ── */
+  window.addEventListener('scroll', () => {
+    document.getElementById('header').classList.toggle('scrolled', window.scrollY > 30);
+  });
+
+  /* ── Mobile nav ── */
+  function toggleMenu() {
+    document.getElementById('mobileNav').classList.toggle('open');
+  }
+
+  /* ── Reveal on scroll ── */
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        e.target.style.transitionDelay = (i * 0.06) + 's';
+        e.target.classList.add('visible');
+        revealObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  /* ── Counter animation ── */
+  function animateCounter(el) {
+    const target = parseInt(el.dataset.target);
+    let start = 0;
+    const duration = 1800;
+    const step = timestamp => {
+      if (!start) start = timestamp;
+      const progress = Math.min((timestamp - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = Math.floor(eased * target);
+      el.textContent = target >= 1000000 ? (current/1000000).toFixed(1)+'Jt+' :
+                        target >= 1000   ? (current/1000).toFixed(0)+'Rb+' :
+                        current + (progress === 1 ? '+' : '');
+      if (progress < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        animateCounter(e.target);
+        counterObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.stat-num[data-target]').forEach(el => counterObserver.observe(el));
+
+  /* ── Client carousel ── */
+  const clients = ['Indomaret','Pertamina','D\'Besto','Hisana','Calf','Almaz','Golden Lamian','The Ritz-Carlton','Amaris Hotel','J.CO Donuts','Starbucks','KFC Indonesia'];
+  const track = document.getElementById('clientsTrack');
+  const chips = clients.map(c => `<div class="client-chip">${c}</div>`).join('');
+  track.innerHTML = chips + chips; // duplicate for seamless loop
+
+  /* ── Product data ── */
+  const products = [
+    { name: 'Thinwall 500ml', cat: 'thinwall', icon: '🥡', desc: 'Wadah plastik serbaguna', badge: 'Terlaris' },
+    { name: 'Mika Salad Box', cat: 'mika', icon: '🥗', desc: 'Transparan & food grade', badge: 'Baru' },
+    { name: 'Paper Bowl 350ml', cat: 'paper', icon: '📄', desc: 'Kraft coated anti bocor', badge: null },
+    { name: 'Sedotan Plastik', cat: 'plastic', icon: '🥤', desc: 'Wrap individual bersih', badge: null },
+    { name: 'Sendok Kayu', cat: 'wooden', icon: '🥢', desc: 'Birch wood, natural look', badge: 'Eco' },
+    { name: 'Thinwall 750ml', cat: 'thinwall', icon: '🫙', desc: 'Ukuran keluarga hemat', badge: null },
+    { name: 'Cup Plastik 16oz', cat: 'plastic', icon: '🧋', desc: 'Ideal untuk minuman dingin', badge: 'Promo' },
+    { name: 'Paper Bag Handle', cat: 'paper', icon: '🛍️', desc: 'Kraft premium, berbagai ukuran', badge: null },
+  ];
+
+  let currentPage = 0;
+  let currentFilter = 'semua';
+
+  function getFiltered() {
+    if (currentFilter === 'semua') return products;
+    return products.filter(p => p.cat === currentFilter);
+  }
+
+  function renderProducts() {
+    const filtered = getFiltered();
+    const perPage = window.innerWidth <= 640 ? 2 : 4;
+    const totalPages = Math.ceil(filtered.length / perPage);
+    currentPage = Math.min(currentPage, totalPages - 1);
+    const page = filtered.slice(currentPage * perPage, currentPage * perPage + perPage);
+    const container = document.getElementById('productsCarousel');
+    container.innerHTML = page.map(p => `
+      <div class="product-card">
+        <div class="product-img">
+          ${p.badge ? `<span class="product-badge">${p.badge}</span>` : ''}
+          ${p.icon}
+        </div>
+        <div class="product-body">
+          <div class="product-name">${p.name}</div>
+          <div class="product-sub">${p.desc}</div>
+          <div class="product-cta-wrap">
+            <button class="btn-pesan" onclick="toggleDropdown(this)">🛒 Pesan <span style="font-size:10px">▲</span></button>
+            <div class="dropdown-pesan">
+              <a href="https://shopee.co.id" target="_blank"><span class="ico">🛍️</span> Pesan Retail (Shopee)</a>
+              <a href="https://wa.me/6281234567890" target="_blank"><span class="ico">💬</span> Pesan Grosir (WhatsApp)</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function filterCatalog(btn, cat) {
+    document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    currentFilter = cat;
+    currentPage = 0;
+    renderProducts();
+  }
+
+  function nextProduct() {
+    const filtered = getFiltered();
+    const perPage = window.innerWidth <= 640 ? 2 : 4;
+    const totalPages = Math.ceil(filtered.length / perPage);
+    currentPage = (currentPage + 1) % totalPages;
+    renderProducts();
+  }
+  function prevProduct() {
+    const filtered = getFiltered();
+    const perPage = window.innerWidth <= 640 ? 2 : 4;
+    const totalPages = Math.ceil(filtered.length / perPage);
+    currentPage = (currentPage - 1 + totalPages) % totalPages;
+    renderProducts();
+  }
+
+  function toggleDropdown(btn) {
+    const dd = btn.nextElementSibling;
+    const isOpen = dd.classList.contains('open');
+    document.querySelectorAll('.dropdown-pesan.open').forEach(d => d.classList.remove('open'));
+    if (!isOpen) dd.classList.add('open');
+  }
+  document.addEventListener('click', e => {
+    if (!e.target.classList.contains('btn-pesan'))
+      document.querySelectorAll('.dropdown-pesan.open').forEach(d => d.classList.remove('open'));
+  });
+
+  /* Auto-swipe catalog every 3s */
+  setInterval(nextProduct, 3000);
+
+  renderProducts();
+</script>
+</body>
+</html>
